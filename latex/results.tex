@@ -16,6 +16,14 @@
 Idea: calculate the highest resolution that could have been achieved. compare it to measurement data. How much can still be gained?
 opt was calculated according to the optimization problem in \cite{hossfeld2015identifying}. The calculations were done using the Gurobi Optimizer\footnote{http://www.gurobi.com/}.
 
+In total we have four sets of results that we compare to each other:
+\begin{itemize}
+\item \textit{measurement}: the originally measured data set from \cite{sieber16sacrificing}; notice that stalling occured in these runs
+\item \textit{opt (regression)}: assume that each segment is only downloaded once; same amount of stalling as measurement; was calculated in \cite{sieber16sacrificing}
+\item \textit{opt (same stalling as measurement)}: gurobi (optimize mean quality based on \cite{hossfeld2015identifying}); same amount of stalling as measurement
+\item \textit{opt (no stalling)}: gurobi (optimize mean quality based on \cite{hossfeld2015identifying}); no stalling
+\end{itemize}
+
 \begin{figure}[t]
 \centering
 \includegraphics[width=0.5\textwidth]{figs/quality}%
@@ -30,4 +38,4 @@ opt was calculated according to the optimization problem in \cite{hossfeld2015id
 \label{fig:switches}%
 \end{figure}
 
-In figure \ref{fig:opt} we see the CDF of the mean video quality in the measurement runs and highest achievable mean video quality according to the optimization problem. In addition, we added an estimation of the avg. quality level that is possible based on downloaded data that was done in [BIEBnetworking2016]. While stalling events occured frequently during the original measurement, stalling events are not allowed to occur in the optimization problem. Therefore, we consider two sets of input for the opt. prob. for each measurement run: First, we only consider the available bandwidth during the video download. Second, we also respect the stalling events that occured. The sum of stalling was then added as initial delay during which the video was downloaded. In contrast to the YouTube measurement data where the video buffer does not contain more than 50s of video content at a time, in the calculations of the optimal adaptation we assumed that the video buffer is not limited.
+In figure \ref{fig:opt} we see the CDF of the mean video quality in the measurement runs and highest achievable mean video quality according to the optimization problem. In addition, we added an estimation of the avg. quality level that is possible based on downloaded data that was done in \cite{sieber16sacrificing}. While stalling events occured frequently during the original measurement, stalling events are not allowed to occur in the optimization problem. Therefore, we consider two sets of input for the opt. prob. for each measurement run: First, we only consider the available bandwidth during the video download. Second, we also respect the stalling events that occured. The sum of stalling was then added as initial delay during which the video was downloaded. In contrast to the YouTube measurement data where the video buffer does not contain more than 50s of video content at a time, in the calculations of the optimal adaptation we assumed that the video buffer is not limited.
