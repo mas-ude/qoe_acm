@@ -23,15 +23,16 @@ def do_regressions(data, method = IsotonicRegression):
 
 def do_plot_paper(yt_id, data, regs, savef):
     
-    fig = texFigure(fig_width=3, fig_height=3, font_scale=155)
+    #fig = texFigure(fig_width=3, fig_height=3, font_scale=155)
+    fig = texFigure()    
     
     data = data[data['yt_id'] == yt_id]        
     
     x, y = data['net_played_bytes'], data['pl_avg_assumed_quality_ql']
     y_= regressions[yt_id].predict(x)
 
-    plt.xlabel("Played Bytes $B$ (MB)")
-    plt.ylabel(r"Quality Level $J$")
+    plt.xlabel("Played Bytes (MB)")
+    plt.ylabel(r"Average Quality Level")
 
     ctmp = plt.get_cmap('copper')
     colors = [ctmp(i) for i in np.linspace(0, 1, 4, endpoint=False)]    
@@ -65,17 +66,11 @@ def predict(dl_bytes, yt_id):
 
 if __name__ == "__main__":
 
-    data = pd.read_csv("traces/static.csv.gz")
+    data = pd.read_csv("../data/static_opt_stall.csv")
     
     data['net_played_bytes'] = data['net_played_bytes'] / 1000 / 1000
     data.sort('net_played_bytes', inplace=True)
-    
-    studypath = "figures/32playedbytesregressions"
-    try:    
-        os.makedirs(studypath)
-    except:
-        pass
-    
+       
     regressions = do_regressions(data)
 
     #plot_regressions(data, regressions)
@@ -84,7 +79,7 @@ if __name__ == "__main__":
     selection = ['_pjBVUyq530', 'vbLLqaa9ksw']
     
     for s in selection:
-        do_plot_paper(s, data, regressions, os.path.join(studypath, "32_%s.pdf" % s))
+        do_plot_paper(s, data, regressions, "../latex/figs/32_%s.pdf" % s)
     
     data.loc[:, 'predicted_ql'] = data.apply(lambda row: regressions[row['yt_id']].predict([row['net_played_bytes']])[0], axis=1)
     
