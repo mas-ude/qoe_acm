@@ -11,14 +11,14 @@ from pylab import *
 import matplotlib.patches as mpatches
 import matplotlib.lines as mlines
 
-pdir='figures/'
+pdir='../latex/figs/'
 
 #%% Read data
 
 ranges = {}
 mins = []
 
-file = 'traces/range_1004_170227.csv'
+file = '../data/range_1004_170227.csv'
 
 with open(file, 'r') as csvfile:
     
@@ -76,17 +76,21 @@ for q in order:
                          [0]*len(x),
                          Y[idx],
                          alpha=0.04,
-                         facecolor='r',
+                         facecolor='gray',
                          linewidth=0.0)
                          
-plt.plot([0,100], 
-         [0,100], 
-         color='g',
-         alpha=0.15)
+#plt.plot([0,100], 
+#         [0,100], 
+#         color='g',
+#         alpha=0.15)
 
-plt.annotate(s='$\kappa = 1$', xy=(80,82), xytext=(61,92), arrowprops=dict(arrowstyle='->'))     
+#plt.annotate(s='$\kappa = 1$', xy=(80,82), xytext=(61,92), arrowprops=dict(arrowstyle='->'))
+
+plt.text(50, 6, "Overlaps")
+plt.annotate("", xy=(31, 3), xytext=(89, 3), arrowprops=dict(arrowstyle="<->", connectionstyle="arc3")) 
 
 ylim(0, 100)    
+xlim(0, 110)
 ylabel('Time of Request (s)')    
 xlabel('Requested Video Interval (s)')
 legend(handles=hpatches, loc='upper left')
