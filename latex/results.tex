@@ -11,7 +11,17 @@
 \label{fig:qualityvsstalling}%
 \end{figure}
 
-Figure \ref{fig:qualityvsstalling}: pearson correlation -0.773713
+Figure \ref{fig:qualityvsstalling} illustrates the relationship between the average quality level and the stalling events in the experiment result set.
+For the average quality level, 0 is defined as \unit[100]{\%} of the segments are shown to the user in 144p. 3 is defined as \unit[100]{\%} of the segments are shown to the user in 480p.
+The average quality levels are clustered using k-means and the error bars indicate the \unit[95]{\%} confidence interval of each cluster.
+Two observations can be made from the figure. First, the lowest average quality level is 0.3 with about 0.5 switches per minute.
+From this it follows that the player risks one stalling per two minutes in order to not constantly show the lowest quality level in low bandwidth scenarios.
+Second, the buffering events exhibit an oscillating behavior.
+The oscillating behavior is consistent with observations made in \cite{sieber16sacrificing}.
+The study shows that the behavior of YouTube's adaptation algorithm depends on the relationship between video bit-rate and available bandwidth.
+
+
+pearson correlation -0.773713
 
 \subsection{optimal adaptation}
 
