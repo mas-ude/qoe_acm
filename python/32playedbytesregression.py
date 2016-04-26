@@ -42,7 +42,7 @@ def do_plot_paper(yt_id, data, regs, savef):
     plt.plot(x, y_, '.-', color=colors[1], markersize=6)
     
     plt.xlim([0,75])
-    plt.xticks([15, 30, 45, 60])
+    #plt.xticks([15, 30, 45, 60])
 
     texSaveFig(savef)    
     plt.close(fig)
