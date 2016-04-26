@@ -32,9 +32,18 @@ In total we have four sets of results that we compare to each other:
 \begin{itemize}
 \item \textit{measurement}: the originally measured data set from \cite{sieber16sacrificing}; notice that stalling occured in these runs
 \item \textit{opt (regression)}: assume that each segment is only downloaded once; same amount of stalling as measurement; was calculated in \cite{sieber16sacrificing}
-\item \textit{opt (same stalling as measurement)}: gurobi (optimize mean quality based on \cite{hossfeld2015identifying}); same amount of stalling as measurement
-\item \textit{opt (no stalling)}: gurobi (optimize mean quality based on \cite{hossfeld2015identifying}); no stalling
+\item \textit{opt (initial delay instead of stalling)}: gurobi (optimize mean quality based on \cite{hossfeld2015identifying}); same amount of stalling as measurement
+\item \textit{opt (no stalling, no initial delay)}: gurobi (optimize mean quality based on \cite{hossfeld2015identifying}); no stalling
 \end{itemize}
+
+
+More details for \textit{opt (no stalling, no initial delay)}
+\begin{itemize}
+\item optimization done according to 2-step approach from \cite{miller2013optimal}
+\item we assume no initial delay
+\item this means, the total duration of a video session is lower if stalling occured in the measurement run. This means less total data is downloaded.
+\end{itemize}
+\textit{opt (initial delay instead of stalling)} was done similar to \textit{opt no stalling} with the difference that we added an initial delay $T_0$ to the replaying process. The duration of $T_0$ was equal to the total duration of all stalling events combined. This way, it is ensured that the same amount of data can be downloaded.
 
 \begin{figure}[t]
 \centering
