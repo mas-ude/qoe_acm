@@ -4,9 +4,11 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.isotonic import IsotonicRegression
+from scipy import interpolate
 from texplt import texSaveFig, texFigure
 
 regressions = {}
+interp = {}
 
 def do_regressions(data, method = IsotonicRegression):
 
@@ -19,6 +21,29 @@ def do_regressions(data, method = IsotonicRegression):
         regressions[name] = reg
     
     return regressions
+
+
+def do_interp(data):
+    
+    itags = [160, 133, 134, 134]
+    
+    for name, group in data.groupby('yt_id'):
+        
+        itags_br = [group['br_avg_i%d' % t].unique()[0] for t in itags]
+        
+        interp[name] = interpolate.interp1d(itags_br, range(len(itags)), bounds_error=False)
+
+        
+    for name, group in data.groupby('yt_id'):
+         data.loc[:, 'interp_ql'] = data.apply(lambda row: interp[row['yt_id']](row['net_played_bytes'] * 8 * 1000 * 1000 / row['vid_length']), axis=1)
+            
+        
+        
+        pass
+    
+    
+    pass
+    
 
 
 def do_plot_paper(yt_id, data, regs, savef):
@@ -67,10 +92,10 @@ def predict(dl_bytes, yt_id):
 if __name__ == "__main__":
 
     data = pd.read_csv("../data/static_opt_stall.csv")
-    
+
     data['net_played_bytes'] = data['net_played_bytes'] / 1000 / 1000
     data.sort('net_played_bytes', inplace=True)
-       
+
     regressions = do_regressions(data)
 
     #plot_regressions(data, regressions)
