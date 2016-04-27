@@ -8,7 +8,14 @@ This gives an estimate of how much non-redundant data is necessary to reach a ce
 Furthermore, it allows us to estimate the difference in term of average quality between two different amounts of data.
 The advantage of the approach is that it captures the dynamics of the overall system as it is based on actual observations.
 
-Figure \ref{fig:heuristic} illustrates the resulting relationship for one of the videos in the data-set.
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.9\linewidth]{figs/32_vbLLqaa9ksw.pdf}%
+\caption{Isotonic regression result showing the relationship between Bytes shown to the user and resulting average playback quality for video vbLLqaa9ksw. 336 video views are used in the regression.}
+\label{fig:heuristic}%
+\end{figure}
+
+Figure \ref{fig:heuristic} illustrates the resulting relationship denoted as function $\phi$ for one of the videos in the data-set.
 The axis to the right gives the amount of Bytes shown to the user.
 The axis to the left gives the resulting average playback quality.
 Each (brown) dot represents one playback session.
@@ -20,10 +27,8 @@ This is due to the combinatorial problem which arises due to the different quali
 Second, there is a jump at \unit[20]{MBytes} from 0.7 to 1.1 average quality level.
 Third, there are outliers, e.g. at \unit[27]{MBytes}, where significant more data does not increase the average quality level.
 
-\begin{figure}[t]
-\centering
-\includegraphics[width=0.9\linewidth]{figs/32_vbLLqaa9ksw.pdf}%
-\caption{Isotonic regression result showing the relationship between Bytes shown to the user and resulting average playback quality for video vbLLqaa9ksw. 336 video views are used in the regression.}
-\label{fig:heuristic}%
-\end{figure}
+Based on $\phi$ we determine the loss in average quality level due to the redundant traffic as:
 
+\begin{equation}
+\phi(B_T) - \phi(B)
+\end{equation}
