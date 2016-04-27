@@ -25,20 +25,20 @@ Other ratios exhibit a high amount of redundant traffic and buffering ratio.
 %There exists a fixed ratio of about three times the bit-rate compared to the network throughput (i.e. not application level throughput), where the time on that quality level is maximized, but also the quality switching and buffering ratio is increased.
 
 In total, the pearson correlation shows a high correlation (-0.774) between average quality level and buffering events.
-
-\subsection{optimal adaptation}
+\subsection{Data Sets}
 
 Idea: calculate the highest resolution that could have been achieved. compare it to measurement data. How much can still be gained?
+In the following we want to compare three optimization methods to each other.
 opt was calculated according to the optimization problem in \cite{hossfeld2015identifying}. The calculations were done using the Gurobi Optimizer\footnote{http://www.gurobi.com/}.
 
 In total we have four sets of results that we compare to each other:
-\begin{itemize}
-\item \textit{measurement}: the originally measured data set from \cite{sieber16sacrificing}; notice that stalling occured in these runs
-\item \textit{opt (regression)}: assume that each segment is only downloaded once; same amount of stalling as measurement; was calculated in \cite{sieber16sacrificing}
-\item \textit{opt (initial delay instead of stalling)}: gurobi (optimize mean quality based on \cite{hossfeld2015identifying}); same amount of stalling as measurement
-\item \textit{opt (no stalling, no initial delay)}: gurobi (optimize mean quality based on \cite{hossfeld2015identifying}); no stalling
-\end{itemize}
+First, we have the initial observations which shall serve as a \textit{baseline} in the following analysis. Please notice that stalling events did occur during these runs. These measurements were originally recorded in \cite{sieber16sacrificing} where the measurement methodology and measurement set-up is described in great detail: $35$ videos $\times 27$ bandwidth values $\times 15$ replications. Four quality level representations were observed: $144p, 240p, 360p, 480p$.
 
+Based on this dataset, a \textit{heuristical approach} was calculated in \cite{sieber16sacrificing} which estimated the average resolution that is reachable if there was no redundant traffic, i.e. if no video segment is downloaded multiple times. Notice that it was assumed that the same amount of stalling would occur.
+
+As a new contribution, we use the optimization problem, described in \ref{fig:opt} to exactly calculate the highest mean resolution that was optimally obtainable. Hereby, we consider the same video files, the same duration of the viewing session and the same average network throughput as was used in the baseline scenario to make it comparable. However, instead of having stalling events interrupt the replaying process, we added an initial delay to the the replaying process. The duration of this delay is equal to the sum of the observed stalling events. This leads to the same duration of the viewing session and the same replay time and the same amount of data that was totally downloaded.
+
+Our second approach was to eliminate the stalling completely and reduce the initial delay to the minimum possible duration. For this, we considered the exact same network throughput as in the baseline scenario, while having a shorter session duration since the stalling times are omitted. This means that the amount of data that is downloaded in this case is lower than in the baseline scenario.
 
 More details for \textit{opt (no stalling, no initial delay)}
 \begin{itemize}
@@ -47,6 +47,10 @@ More details for \textit{opt (no stalling, no initial delay)}
 \item this means, the total duration of a video session is lower if stalling occured in the measurement run. This means less total data is downloaded.
 \end{itemize}
 \textit{opt (initial delay instead of stalling)} was done similar to \textit{opt no stalling} with the difference that we added an initial delay $T_0$ to the replaying process. The duration of $T_0$ was equal to the total duration of all stalling events combined. This way, it is ensured that the same amount of data can be downloaded.
+
+\subsection{Optimal Adaptation}
+
+First, we will look at the adaptation of video resolution; second we will look at how many switches are expected to occur.
 
 \begin{figure}[t]
 \centering
