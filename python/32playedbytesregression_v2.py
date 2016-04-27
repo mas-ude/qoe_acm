@@ -59,6 +59,8 @@ def do_plot_paper(yt_id, data, regs, savef):
     plt.xlabel("Played Bytes (MB)")
     plt.ylabel(r"Average Quality Level")
 
+    plt.annotate(s=r'\phi', xy=(30,1.6), xytext=(15,2.2), arrowprops=dict(arrowstyle='->'))     
+
     ctmp = plt.get_cmap('copper')
     colors = [ctmp(i) for i in np.linspace(0, 1, 4, endpoint=False)]    
     ic=iter(colors)    
