@@ -17,7 +17,7 @@ if __name__ == "__main__":
                      
     for i in range(2):
         ecdf = sm.distributions.ECDF(data.iloc[:,i])    
-        x = np.linspace(data.iloc[:,i].min(), data.iloc[:,i].max(), 1000)
+        x = np.linspace(data.iloc[:,i].min(), data.iloc[:,i].max(), len(data.iloc[:,i]))
         y = ecdf(x)
         plt.step(x, y, color=next(ic))                                       
                 
@@ -32,5 +32,5 @@ if __name__ == "__main__":
     plt.annotate(s='optimization', xy=(3,0.9), xytext=(4,0.8), arrowprops=dict(arrowstyle='->'))     
     plt.annotate(s='heuristic', xy=(0.6,0.5), xytext=(1.1,0.25), arrowprops=dict(arrowstyle='->'))     
     
-    texSaveFig("../latex/figs/switches.pdf")    
+    texSaveFig("../latex/figs/switches_py.pdf")    
     plt.close(fig)
