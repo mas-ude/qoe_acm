@@ -16,7 +16,8 @@ if __name__ == "__main__":
     ic=iter(colors)                     
                      
     for i in range(3):
-        samples = data[data.iloc[:,i]>0].iloc[:,i]
+        #samples = data[data.iloc[:,i]>0].iloc[:,i] # without the 0 values
+        samples = data.iloc[:,i]
         ecdf = sm.distributions.ECDF(samples)    
         x = np.linspace(samples.min(),samples.max(), len(samples))
         y = ecdf(x)
@@ -30,9 +31,10 @@ if __name__ == "__main__":
     
     #plt.annotate(s=r'optimization', xy=(30,1.6), xytext=(15,2.2), arrowprops=dict(arrowstyle='->'))         
     
-    plt.annotate(s='heuristic', xy=(1.9,0.8), xytext=(2,0.7), arrowprops=dict(arrowstyle='->'))     
-    plt.annotate(s='optimization, no stalling', xy=(1.5,0.6), xytext=(1.5,0.5), arrowprops=dict(arrowstyle='->'))     
-    plt.annotate(s='optimization, stalling', xy=(0.9,0.3), xytext=(1,0.25), arrowprops=dict(arrowstyle='->'))     
+    plt.annotate(s='heuristic', xy=(0.7,0.7), xytext=(0.2,0.85), arrowprops=dict(arrowstyle='->'))     
+    plt.annotate(s='optimization, no stalling', xy=(0.87,0.7), xytext=(1.4,0.8), arrowprops=dict(arrowstyle='->'))     
+    plt.annotate(s="", xy=(2,0.94), xytext=(1.58,0.82), arrowprops=dict(arrowstyle='->'))     
+    plt.annotate(s='optimization, stalling', xy=(0.8,0.64), xytext=(1.1,0.5), arrowprops=dict(arrowstyle='->'))     
     
     texSaveFig("../latex/figs/qualitygain_py.pdf")    
     plt.close(fig)
