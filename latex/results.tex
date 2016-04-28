@@ -25,28 +25,6 @@ Other ratios exhibit a high amount of redundant traffic and buffering ratio.
 %There exists a fixed ratio of about three times the bit-rate compared to the network throughput (i.e. not application level throughput), where the time on that quality level is maximized, but also the quality switching and buffering ratio is increased.
 
 In total, the pearson correlation shows a high correlation (-0.774) between average quality level and buffering events.
-\subsection{Data Sets}
-
-Idea: calculate the highest resolution that could have been achieved. compare it to measurement data. How much can still be gained?
-In the following we want to compare three optimization methods to each other.
-opt was calculated according to the optimization problem in \cite{hossfeld2015identifying}. The calculations were done using the Gurobi Optimizer\footnote{http://www.gurobi.com/}.
-
-In total we have four sets of results that we compare to each other:
-First, we have the initial observations which shall serve as a \textit{baseline} in the following analysis. Please notice that stalling events did occur during these runs. These measurements were originally recorded in \cite{sieber16sacrificing} where the measurement methodology and measurement set-up is described in great detail: $35$ videos $\times 27$ bandwidth values $\times 15$ replications. Four quality level representations were observed: $144p, 240p, 360p, 480p$.
-
-Based on this dataset, a \textit{heuristical approach} was calculated in \cite{sieber16sacrificing} which estimated the average resolution that is reachable if there was no redundant traffic, i.e. if no video segment is downloaded multiple times. Notice that it was assumed that the same amount of stalling would occur.
-
-As a new contribution, we use the optimization problem, described in \ref{fig:opt} to exactly calculate the highest mean resolution that was optimally obtainable. Hereby, we consider the same video files, the same duration of the viewing session and the same average network throughput as was used in the baseline scenario to make it comparable. However, instead of having stalling events interrupt the replaying process, we added an initial delay to the the replaying process. The duration of this delay is equal to the sum of the observed stalling events. This leads to the same duration of the viewing session and the same replay time and the same amount of data that was totally downloaded.
-
-Our second approach was to eliminate the stalling completely and reduce the initial delay to the minimum possible duration. For this, we considered the exact same network throughput as in the baseline scenario, while having a shorter session duration since the stalling times are omitted. This means that the amount of data that is downloaded in this case is lower than in the baseline scenario.
-
-More details for \textit{opt (no stalling, no initial delay)}
-\begin{itemize}
-\item optimization done according to 2-step approach from \cite{miller2013optimal}
-\item we assume no initial delay
-\item this means, the total duration of a video session is lower if stalling occured in the measurement run. This means less total data is downloaded.
-\end{itemize}
-\textit{opt (initial delay instead of stalling)} was done similar to \textit{opt no stalling} with the difference that we added an initial delay $T_0$ to the replaying process. The duration of $T_0$ was equal to the total duration of all stalling events combined. This way, it is ensured that the same amount of data can be downloaded.
 
 \subsection{Optimal Adaptation}
 
@@ -55,15 +33,27 @@ First, we will look at the adaptation of video resolution; second we will look a
 \begin{figure}[t]
 \centering
 \includegraphics[width=0.5\textwidth]{figs/qualitygain_py}%
-\caption{CDF of the mean video quality in the measurement runs and highest achievable mean video quality according to the optimization problem in \cite{hossfeld2015identifying}. Remake figure!}
+\caption{Distribution of the mean video quality in the measurement runs and highest achievable mean video quality according to the optimization problem from Section \ref{optadapt} and the heuristic from \cite{sieber16sacrificing}.}
 \label{fig:opt}%
 \end{figure}
+
+Figure \ref{fig:opt} displays the CDF of the difference between the observed mean video quality and the optimal optimally achievable mean video quality.
+
+Observations are as follows:
+\begin{itemize}
+\item about $30$ percent of runs are already at maximum quality and can therefore not be improved.
+\item the optimization where initial delay is allowed allways leads to the highest quality.
+\item However, the median of all three data sets is within $0.15$ of a quality of each other. This can be considered a minor difference.
+\item In $56$ percent of the baseline runs stalling events did occur. In the figure, the \textit{opt(no stall)} demonstrates that theoretically, it would have been possible to avoid the stalling in $93$ percent of cases while increasing the quality in $30$ percent of cases. While \textit{opt(same stall)} shows that the mean quality could have been increased by adding an initial delay, this increase is not particularly high.
+\item Further, while the heuristic leads to a worse result than \textit{opt(same stall)}, it has the advantage of being a less complex problem. This might outweigh the slightly better performance for practical purposes.
+\end{itemize}
+
+Finally, Figure \ref{fig:switches} shows the number of quality switches per minute. Here, both data sets that were created with the optimization approach lead to very similar results, which is why we only present the results for \textit{opt(no stall)}. While the number of switches is not of significant importance to the QoE in video streaming according to \textbf{[Sources]}, there have been concerns about particularly high frequencies \textbf{[Sources]}. The heuristical approach and the optimization both lead to less than $2$ switches per minute in more than $80$ percent of cases which are acceptable values. However, the two-step approach for the optimization leads to some very high switching frequencies that might be problematic. This is because the two-step approach puts very high value on the optimization of the quality level and very little emphasis on the number of switches. Luckily, this problem can easily be averted by using a slightly different approach: In [Eirini paper]\footnote{Enriching HTTP Adaptive Streaming with Context Awareness: A Tunnel Case Study, accepted for ICC 2016}, a method is proposed that combines both steps into one, allowing the number of switches to be emphasized higher at a negligibly low cost of quality.
 
 \begin{figure}[t]
 \centering
 \includegraphics[width=0.5\textwidth]{figs/switches_py}%
-\caption{CDF of the number of switches per minute. Remake figure!}
+\caption{Distribution of the number of switches per minute for the heuristic and the optimization}
 \label{fig:switches}%
 \end{figure}
 
-In figure \ref{fig:opt} we see the CDF of the mean video quality in the measurement runs and highest achievable mean video quality according to the optimization problem. In addition, we added an estimation of the avg. quality level that is possible based on downloaded data that was done in \cite{sieber16sacrificing}. While stalling events occured frequently during the original measurement, stalling events are not allowed to occur in the optimization problem. Therefore, we consider two sets of input for the opt. prob. for each measurement run: First, we only consider the available bandwidth during the video download. Second, we also respect the stalling events that occured. The sum of stalling was then added as initial delay during which the video was downloaded. In contrast to the YouTube measurement data where the video buffer does not contain more than 50s of video content at a time, in the calculations of the optimal adaptation we assumed that the video buffer is not limited.
