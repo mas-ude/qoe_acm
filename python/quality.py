@@ -33,7 +33,7 @@ if __name__ == "__main__":
     
     plt.annotate(s='heuristic', xy=(0.7,0.7), xytext=(0.2,0.85), arrowprops=dict(arrowstyle='->'))     
     plt.annotate(s='optimization, no stalling', xy=(0.87,0.7), xytext=(1.4,0.8), arrowprops=dict(arrowstyle='->'))     
-    plt.annotate(s="", xy=(2,0.94), xytext=(1.58,0.82), arrowprops=dict(arrowstyle='->'))     
+    plt.annotate(s="", xy=(2,0.94), xytext=(1.85,0.86), arrowprops=dict(arrowstyle='->'))     
     plt.annotate(s='optimization, stalling', xy=(0.8,0.64), xytext=(1.1,0.5), arrowprops=dict(arrowstyle='->'))     
     
     texSaveFig("../latex/figs/qualitygain_py.pdf")    
