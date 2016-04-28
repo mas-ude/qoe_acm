@@ -16,8 +16,9 @@ if __name__ == "__main__":
     ic=iter(colors)                     
                      
     for i in range(3):
-        ecdf = sm.distributions.ECDF(data.iloc[:,i])    
-        x = np.linspace(data.iloc[:,i].min(), data.iloc[:,i].max(), len(data.iloc[:,i]))
+        samples = data[data.iloc[:,i]>0].iloc[:,i]
+        ecdf = sm.distributions.ECDF(samples)    
+        x = np.linspace(samples.min(),samples.max(), len(samples))
         y = ecdf(x)
         plt.step(x, y, color=next(ic))                                       
                 
