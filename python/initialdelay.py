@@ -29,8 +29,8 @@ if __name__ == "__main__":
     
     #plt.annotate(s=r'optimization', xy=(30,1.6), xytext=(15,2.2), arrowprops=dict(arrowstyle='->'))         
     
-    plt.annotate(s='opt (no stall)', xy=(10,0.95), xytext=(80,0.8), arrowprops=dict(arrowstyle='->'))     
-    plt.annotate(s='opt (stalling)', xy=(15,0.3), xytext=(50,0.4), arrowprops=dict(arrowstyle='->'))     
+    plt.annotate(s='opt (instant play)', xy=(10,0.95), xytext=(80,0.8), arrowprops=dict(arrowstyle='->'))     
+    plt.annotate(s='opt (prebuffering)', xy=(15,0.3), xytext=(50,0.4), arrowprops=dict(arrowstyle='->'))     
     
     texSaveFig("../latex/figs/initial_delay_py.pdf")    
     plt.close(fig)
