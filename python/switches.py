@@ -29,8 +29,8 @@ if __name__ == "__main__":
     
     #plt.annotate(s=r'optimization', xy=(30,1.6), xytext=(15,2.2), arrowprops=dict(arrowstyle='->'))         
     
-    plt.annotate(s='optimization', xy=(3,0.9), xytext=(4,0.8), arrowprops=dict(arrowstyle='->'))     
-    plt.annotate(s='heuristic', xy=(0.6,0.5), xytext=(1.1,0.25), arrowprops=dict(arrowstyle='->'))     
+    plt.annotate(s='opt', xy=(3,0.9), xytext=(4,0.8), arrowprops=dict(arrowstyle='->'))     
+    plt.annotate(s='measurement', xy=(0.6,0.5), xytext=(1.1,0.25), arrowprops=dict(arrowstyle='->'))     
     
     texSaveFig("../latex/figs/switches_py.pdf")    
     plt.close(fig)
