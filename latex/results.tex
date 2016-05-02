@@ -28,8 +28,6 @@ In total, the pearson correlation shows a high correlation (-0.774) between aver
 
 \subsection{Optimal Adaptation}
 
-First, we will look at the adaptation of video resolution; second we will look at how many switches are expected to occur.
-
 \begin{figure}[t]
 \centering
 \includegraphics[width=0.5\textwidth]{figs/qualitygain_py}%
@@ -37,7 +35,10 @@ First, we will look at the adaptation of video resolution; second we will look a
 \label{fig:opt}%
 \end{figure}
 
-Figure \ref{fig:opt} displays the CDF of the difference between the observed mean video quality and the optimal optimally achievable mean video quality.
+First, we will look at the adaptation of video resolution; second we will look at how many switches are expected to occur. Figure \ref{fig:opt} displays the CDF of the difference between the observed mean video quality and the optimal optimally achievable mean video quality. We observe that about $30$ percent of runs are already at maximum quality and can therefore not be improved. The data set \textit{opt (prebuffering)} leads to the highest mean quality. However, the results for the three data sets are very close to each other, e.g. the median of all three data sets is within $0.15$ of a quality of each other.
+%In $56$ percent of the baseline runs stalling events did occur.
+
+If we take Figure \ref{fig:initial_delay} into consideration, it becomes clear that this minor difference in quality comes at a price: \textit{opt (instant play)} demonstrates that it would have been possible to avoid stalling and a high initial delay in $93$ percent of cases while increasing the quality in $30$ percent of cases. While \textit{opt (prebuffering)} shows that the mean quality could have been increased by adding an initial delay, the improvement is not particularly high. Lastly, while the heuristic leads to a worse result than \textit{opt (prebuffering)}, it has the advantage of being a less complex problem. This might outweigh the slightly better performance for practical purposes.
 
 \begin{figure}[t]
 \centering
@@ -46,15 +47,6 @@ Figure \ref{fig:opt} displays the CDF of the difference between the observed mea
 \label{fig:initial_delay}%
 \end{figure}
 
-Observations are as follows:
-\begin{itemize}
-\item about $30$ percent of runs are already at maximum quality and can therefore not be improved.
-\item the optimization where initial delay is allowed allways leads to the highest quality.
-\item However, the median of all three data sets is within $0.15$ of a quality of each other. This can be considered a minor difference.
-\item In $56$ percent of the baseline runs stalling events did occur. In the figure, the \textit{opt(no stall)} demonstrates that theoretically, it would have been possible to avoid the stalling in $93$ percent of cases while increasing the quality in $30$ percent of cases. While \textit{opt(same stall)} shows that the mean quality could have been increased by adding an initial delay, this increase is not particularly high.
-\item Further, while the heuristic leads to a worse result than \textit{opt(same stall)}, it has the advantage of being a less complex problem. This might outweigh the slightly better performance for practical purposes.
-\end{itemize}
-
 \begin{figure}[t]
 \centering
 \includegraphics[width=0.5\textwidth]{figs/switches_py}%
@@ -62,5 +54,5 @@ Observations are as follows:
 \label{fig:switches}%
 \end{figure}
 
-Finally, Figure \ref{fig:switches} shows the number of quality switches per minute. Here, both data sets that were created with the optimization approach lead to very similar results, which is why we only present the results for \textit{opt(no stall)}. While the number of switches is not of significant importance to the QoE in video streaming according to \cite{seufert2015survey}, continuous video quality switches lead to a low QoE \cite{liu2013user}. The heuristical approach and the optimization both lead to less than $2$ switches per minute in more than $80$ percent of cases which are acceptable values. However, the two-step approach for the optimization leads to some very high switching frequencies that might be problematic. This is because the two-step approach puts very high value on the optimization of the quality level and very little emphasis on the number of switches. Luckily, this problem can easily be averted by using a slightly different approach: In \cite{liotou2016enriching}, a method is proposed that combines both steps into one, allowing the number of switches to be emphasized higher at a negligibly low cost of quality.
+Finally, Figure \ref{fig:switches} shows the number of quality switches per minute. Here, both data sets that were created with the optimization approach lead to very similar results, which is why we only present the results for \textit{opt (instant play)}. While the number of switches is not of significant importance to the QoE in video streaming according to \cite{seufert2015survey}, continuous video quality switches lead to a low QoE \cite{liu2013user}. The heuristical approach and the optimization both lead to less than $2$ switches per minute in more than $80$ percent of cases which are acceptable values. However, the two-step approach for the optimization leads to some very high switching frequencies that might be problematic. This is because the two-step approach puts very high value on the optimization of the quality level and very little emphasis on the number of switches. Luckily, this problem can easily be averted by using a slightly different approach: In \cite{liotou2016enriching}, a method is proposed that combines both steps into one, allowing the number of switches to be emphasized higher at a negligibly low cost of quality.
 
