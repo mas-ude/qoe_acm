@@ -5,14 +5,13 @@
 
 \label{sec:sysmodel}
 
-Redundant traffic ratio is defined as:
+In this section we discuss how the data sets are created that are used in Section \ref{sec:results}. Most notably we use an optimization problem to calculate the optimal mean video quality while avoiding stalling events. With this information, we can estimate how much redundant traffic is produced by YouTube. The redundant traffic ratio is defined as:
 
 \begin{equation}
 	\rho = \frac{B_T-B}{B}
 \end{equation}
 
 Where $B_T$ is the total amount of data downloaded during the playback session and $B$ is the sum of the segments' sizes shown to the user.
-
 
 \input{System-Model-Heuristic}
 \input{System-Model-Opt}
