@@ -25,8 +25,8 @@ That way, the player can increase the average quality level shown to the user.
 However, the overall efficiency decreases as the previously downloaded segments are lost.
 Figure \ref{fig:request_schedule} shows a request schedule for one of the experiment runs.
 The axis to the right shows the request video interval in playback time, e.g. the first $\SI{16}{s}$ of the video.
-The axis to the left shows when the time of request based on the experiment time, with $0$ being the time the HTTP GET request was send to the server.
-At first, the play requests one minute of the lowest quality level.
+The axis to the left shows when the time of request based on the experiment time, with $0$ being the time the HTTP GET request was sent to the server.
+At first, the player requests one minute of the lowest quality level.
 $\SI{20}{s}$ into the experiment, the player revises its previously made decision, discards two of the low quality segments (i.e. $\SI{30}{s}$ of playback time) and starts to download a higher quality level instead.
 The shaded areas in the figure illustrate where lower quality segments were discarded.
 
@@ -35,8 +35,7 @@ The videos were played in testbed where the connection was throttled to $\{0.4, 
 A proxy was used to decrypt the HTTPS connection.
 The dataset and testbed is described in detail in \cite{sieber16sacrificing,sieber15costaggressive} and the experimental dataset is freely available online at \cite{traces}. 
 
-
-main contribution: we show there there is a lot of room for optimization for the used adaptation algorithms. Even if we completely avoid stalling events, a higher mean video quality is achievable in most cases. The number of resolution switches can be reduced.
+Our main contribution lies in analyzing how much the used adaptation algorithms can be optimization. Even if we completely avoid stalling events, a higher mean video quality is achievable in most cases. Further, it is possible to reduce the number of resolution switches and start the video after a shorter initial delay.
 
 The paper is structured as follows. The next section discusses the related work in this area of research. 
 In Section \ref{sec:sysmodel} we discuss the methodology and the two approaches used in this work.
