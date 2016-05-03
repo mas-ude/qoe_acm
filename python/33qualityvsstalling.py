@@ -22,7 +22,7 @@ if __name__ == "__main__":
     plt.ylim([0, 1.2])
 
     plt.xlabel("Average playback quality")
-    plt.ylabel(r"Buffering events ($min^-1$)")
+    plt.ylabel(r"Stalling events ($min^-1$)")
     
     texSaveFig("../latex/figs/33qualityvstalling.pdf")    
     plt.close(fig)
