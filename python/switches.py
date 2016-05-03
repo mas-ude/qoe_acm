@@ -21,7 +21,7 @@ if __name__ == "__main__":
         y = ecdf(x)
         plt.step(x, y, color=next(ic))                                       
                 
-    plt.xlim([0, 8])                
+    plt.xlim([0, 5])                
     plt.ylim([0, 1])                
                 
     plt.xlabel("Number of switches per minute")
