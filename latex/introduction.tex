@@ -6,7 +6,7 @@
 
 Today, HTTP Adaptive Streaming (HAS) is the dominant way of video delivery in the Internet. 
 HAS is based on the wide-spread HTTP protocol and takes over its properties such as easy traversal of NAT-devices, firewall-friendliness, encryption in the shape of HTTPS and close-to-customer caching through content-delivery networks (CDNs).
-In HAS, the video content is split into short chunks, e.g. 2 seconds, and each chunk is encoded into different quality levels.
+In HAS, the video content is split into short chunks, e.g. $2$ seconds, and each chunk is encoded into different quality levels.
 The individual chunks are then made available on standard HTTP servers.
 The location of the chunks and their encoding are given to the client through a manifest file.
 At the beginning of the playback, the streaming client first requests the manifest file. 
@@ -15,7 +15,7 @@ Dynamic Adaptive Streaming of HTTP (DASH) is an ISO standard which defines the s
 
 As users are shifting away from traditional video broadcast consumption to individual content selection through streaming services, user expectations are growing. 
 The user expects the content to be available on all his devices and wherever he goes. 
-It is well known that stalling events and the video encoding bit-rate (i.e. the video resolution) have a significant impact on the acceptance rate and the Quality of Experience (QoE) \cite{casas2012youtube}.
+It is well known that stalling events (also referred to as buffering events) and the video encoding bit-rate (i.e. the video resolution) have a significant impact on the acceptance rate and the Quality of Experience (QoE) \cite{casas2012youtube}.
 Therefore, it is important for the service provider to develop a sophisticated adaptation logic which can prevent stalling events even when faced with bottle-necked or unstable Internet connections, such as cellular access or congested links in after-work hours.
 
 In this paper we take a closer look at the behavior of the adaptation logic of YouTube.
@@ -24,14 +24,14 @@ In particular, we observed that the YouTube player sometimes discards its curren
 That way, the player can increase the average quality level shown to the user.
 However, the overall efficiency decreases as the previously downloaded segments are lost.
 Figure \ref{fig:request_schedule} shows a request schedule for one of the experiment runs.
-The axis to the right shows the request video interval in playback time, e.g. the first $\SI{16}{s}$ of the video.
+The axis to the right shows the request video interval in playback time, e.g. the first $\SI{16}{\second}$ of the video.
 The axis to the left shows when the time of request based on the experiment time, with $0$ being the time the HTTP GET request was sent to the server.
 At first, the player requests one minute of the lowest quality level.
-Then, $\SI{20}{s}$ into the experiment, the player revises its previously made decision, discards two of the low quality segments (i.e. $\SI{30}{s}$ of playback time) and starts to download a higher quality level instead.
+Then, ${20}$ seconds into the experiment, the player revises its previously made decision, discards two of the low quality segments (i.e. $\SI{30}{\second}$ of playback time) and starts to download a higher quality level instead.
 The shaded areas in the figure illustrate where lower quality segments were discarded.
 
 Our evaluation is based on an experimental data set with over $10.000$ video views of about $30$ different videos.
-The videos were played in testbed where the connection was throttled to $\{0.4, 0.5, \dots \unit[3.0]{Mbps}\}$.
+The videos were played in testbed where the connection was throttled to $\{0.4, 0.5, \dots \SI{3.0}{Mbps}$.
 A proxy was used to decrypt the HTTPS connection.
 The dataset and testbed is described in detail in \cite{sieber16sacrificing,sieber15costaggressive} and the experimental dataset is freely available online at \cite{traces}. 
 

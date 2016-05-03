@@ -12,7 +12,7 @@ The advantage of the approach is that it captures the dynamics of the overall sy
 \begin{figure}[t]
 \centering
 \includegraphics[width=\columnwidth]{figs/32_vbLLqaa9ksw.pdf}%
-\caption{Isotonic regression result showing the relationship between Bytes shown to the user and resulting average playback quality for video vbLLqaa9ksw. 336 video views are used in this regression.}
+\caption{Isotonic regression result showing the relationship between Bytes shown to the user and resulting average playback quality for video vbLLqaa9ksw. $336$ video views are used in this regression.}
 \label{fig:heuristic}%
 \end{figure}
 
@@ -25,8 +25,8 @@ The connected (black) dots are the isotonic regression result.
 Multiple observations can be made from the figure. 
 First, a specific amount of played bytes can result in different average quality levels at the end. 
 This is due to the combinatorial problem which arises due to the different quality levels and bit-rate variations inside a quality level.
-Second, there is a jump at \unit[20]{MBytes} from 0.7 to 1.1 average quality level.
-Third, there are outliers, e.g. at \unit[27]{MBytes}, where significant more data does not increase the average quality level.
+Second, there is a jump at $\SI{20}{\mega\byte}$ from $0.7$ to $1.1$ average quality level.
+Third, there are outliers, e.g. at $\SI{27}{\mega\byte}$, where significant more data does not increase the average quality level.
 
 Based on $\phi$ we determine the loss in average quality level due to the redundant traffic as:
 
