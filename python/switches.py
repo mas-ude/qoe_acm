@@ -25,7 +25,7 @@ if __name__ == "__main__":
     plt.ylim([0, 1])                
                 
     plt.xlabel("Number of switches per minute")
-    plt.ylabel(r"$P(x<X)$")
+    plt.ylabel(r"$P(x \leq X)$")
     
     #plt.annotate(s=r'optimization', xy=(30,1.6), xytext=(15,2.2), arrowprops=dict(arrowstyle='->'))         
     
