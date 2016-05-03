@@ -4,9 +4,9 @@
 \section{Results}
 \label{sec:results}
 
-we look at the correlation between the average playback quality of the video and and frequency of stalling events. We look how what improvement can be done. In order to do so, we first 
+In this section, we present our results on how much YouTube's current adaptation algorithm could be improved. As key metrics, we analyze the average quality, the frequency of stalling events, the frequency of quality switches and the initial delay of the video playback. As a first step, we discuss how the video quality and stalling events are related to each other in our measurement.
 
-\subsection{Correlation Between Quality and Buffering}
+\subsection{Correlation Between Quality and Stalling}
 
 \begin{figure}[t]
 \centering
@@ -37,8 +37,6 @@ In total, the pearson correlation shows a high correlation ($-0.774$) between av
 \caption{Distribution of the mean video quality in the measurement runs and highest achievable mean video quality according to the optimization problem from Section \ref{optadapt} and the heuristic from \cite{sieber16sacrificing}.}
 \label{fig:opt}%
 \end{figure}
-
-First, we will look at the adaptation of video resolution; second we will look at how many switches are expected to occur.
 
 Figure \ref{fig:opt} displays the distribution of the difference between the observed mean video quality and the optimal optimally achievable mean video quality. We observe that about $30$ percent of runs are already at maximum quality and can therefore not be improved. The data set \textit{opt (prebuffering)} leads to the highest mean quality. However, the results for the three data sets are very close to each other, e.g. the median of all three data sets is within $0.15$ of a quality of each other.
 %In $56$ percent of the baseline runs stalling events did occur.
