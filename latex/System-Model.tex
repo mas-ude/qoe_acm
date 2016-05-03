@@ -5,7 +5,7 @@
 
 \label{sec:sysmodel}
 
-In this section we discuss how the data sets are created that are used in Section \ref{sec:results}. Most notably we use an optimization problem to calculate the optimal mean video quality while avoiding stalling events. With this information, we can estimate how much redundant traffic is produced by YouTube. The redundant traffic ratio is defined as:
+In this section we discuss how the data sets are created that we use to create results in Section \ref{sec:results}. Most notably we use an optimization problem to calculate the optimal mean video quality while avoiding stalling events. This optimization is possible due to the fact that YouTube produces a lot of avoidable redundant traffic. The redundant traffic ratio is defined as:
 
 \begin{equation}
 	\rho = \frac{B_T-B}{B}
