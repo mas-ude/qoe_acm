@@ -3,15 +3,16 @@
 \subsection{Optimal Adaptation}
 \label{optadapt}
 
-In order to determine how much potential there is for optimization, we determine the optimal solution for the "adaptation" \textit{(change expression)} by establishing a MILP for this problem. Assuming that we formulate it correctly, the solution to the MILP will return an optimal "adaptation".
+In order to determine how much potential there is for optimization, we formulate a MILP for this problem. 
+The solution to the MILP will return an optimal adaptation with respect to available bandwidth, video segment sizes, and cumulative stalling times.
 
-A given video is available in $r$ resolutions and consists of $n$ segments, i.e. each segment can be replayed in exactly one resolution. Furthermore, each segment $i$ that is replayed in resolution $j$ has a size $S_{ij}$. We assume that all segments have the same length $\tau$ and are downloaded in order. The total data that has been downloaded at the point in time $t$ is $V(t)$. Before a segment can be replayed, it has to be downloaded. This means there is a deadline $D_i$ until which the segment must be downloaded if no stalling may occur. Since there is an initial delay $T_0$ before the first segment can be replayed, according to \cite{hossfeld2015identifying} the deadline is
+A given video is available in $r$ resolutions and consists of $n$ segments, i.e. each segment can be played in exactly one resolution. Furthermore, each segment $i$ that is played in resolution $j$ has a size $S_{ij}$. We assume that all segments have the same duration $\tau$ and are downloaded in order. The total data that has been downloaded at the point in time $t$ is $V(t)$. Before a segment can be played, it has to be downloaded. This means there is a deadline $D_i$ until which the segment must be downloaded if no stalling may occur. Since there is an initial delay $T_0$ before the first segment can be played, according to \cite{hossfeld2015identifying} the deadline is
 
 \begin{equation}
 D_i = T_0 + i\cdot \tau.
 \end{equation}
 
-The goal is to optimize the downloading process so that the video may be replayed with the highest average resolution. This leads us to a MILP which is a special case of \textit{Optimization Problem 2} from \cite{hossfeld2015identifying}.
+The goal is to optimize the downloading process so that the video may be played with the highest average resolution. This leads us to a MILP which is a special case of \textit{Optimization Problem 2} from \cite{hossfeld2015identifying}.
 
 \begin{align*}
 & \text{maximize} & \sum_{i = 1}^{n} \sum_{j = 1}^{r_{\text{max}}} j x_{ij} &\\
@@ -21,4 +22,4 @@ The goal is to optimize the downloading process so that the video may be replaye
 && \phantom{\text{.}} \sum_{i=1}^{k} \sum_{j = 1}^{r_{\text{max}}} S_{ij} x_{ij} &\leq V(D_k), &\forall k&=1,\ldots,n \text{.} \\
 \end{align*}
 
-Above problem is the Multiple-Choice Nested Knapsack Problem which is NP-hard. However, there exist polynomial time algorithms that return an approximation for the optimal solution that is sufficiently good for most practical purposes. The MILP was implemented in gurobi in MATLAB.
+Above problem is the Multiple-Choice Nested Knapsack Problem which is NP-hard. However, there exist polynomial time algorithms that return an approximation for the optimal solution that is sufficiently good for most practical purposes. The MILP was implemented in Gurobi \footnote{http://www.gurobi.com/} with MATLAB.
