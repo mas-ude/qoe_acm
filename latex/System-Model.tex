@@ -5,13 +5,15 @@
 
 \label{sec:sysmodel}
 
-In this section we discuss how the data sets are created that we use to create results in Section \ref{sec:results}. Most notably we use an optimization problem to calculate the optimal mean video quality while avoiding stalling events. This optimization is possible due to the fact that YouTube produces a lot of avoidable redundant traffic. The redundant traffic ratio is defined as:
-
-\begin{equation}
-	\rho = \frac{B_T-B}{B}
-\end{equation}
-
-Where $B_T$ is the total amount of data downloaded during the playback session and $B$ is the sum of the segments' sizes shown to the user.
+In this section we discuss the two approaches we use to evaluate the observed adaptation from the experimental data set.
+This first approach is based on regression and uses previously observed video sessions to create an estimation on how much non-redundant traffic relates to a specific average playback quality.
+This has the advantage of being fast, scalable and not computational expensive. 
+Furthermore, as it is based on actual observed data, it captures the dynamics of the deployed system.
+We use this estimation then to calculate the maximum achievable average quality level based on the total amount of downloaded Bytes in a playback session.
+The second approach is based on a MILPS formulation. 
+For this optimization problem we take the actual video segment sizes, the observed bandwidth and cumulative stallings times from the experimental data set as an input.
+This gives us the optimal adaptation considering the stallings times.
+In a second step, we remove the cumulative stalling times and force the optimization problem to instantly play the video.
 
 \input{System-Model-Heuristic}
 \input{System-Model-Opt}

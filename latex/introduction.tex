@@ -23,6 +23,14 @@ In previous work we showed that YouTube's adaptation logic focuses strictly on t
 In particular, we observed that the YouTube player sometimes discards its currently buffered content to re-download it in a higher quality level.
 That way, the player can increase the average quality level shown to the user.
 However, the overall efficiency decreases as the previously downloaded segments are lost.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figs/eg_request_schedule}%
+\caption{Example request schedule from one of the experiment runs \cite{sieber16sacrificing}. From \unit[30]{s} to \unit[90]{s} overlaps can be observed where low quality (144p) is replaced by higher quality levels (240p, 360p and 480p).}
+\label{fig:request_schedule}%
+\end{figure}
+
 Figure \ref{fig:request_schedule} shows a request schedule for one of the experiment runs.
 The axis to the right shows the request video interval in playback time, e.g. the first $\SI{16}{\second}$ of the video.
 The axis to the left shows the time of request based on the experiment time, with $0$ being the time the first HTTP GET request was sent to the server.
@@ -45,9 +53,3 @@ The paper is structured as follows. The next section discusses the related work 
 In Section \ref{sec:sysmodel} we discuss the methodology and the two approaches used in this work.
 In Section \ref{sec:results} we present the results and in Section \ref{sec:conclusion} we conclude this work and outline future work.
 
-\begin{figure}[t]
-\centering
-\includegraphics[width=\columnwidth]{figs/eg_request_schedule}%
-\caption{Example request schedule from one of the experiment runs \cite{sieber16sacrificing}. From \unit[30]{s} to \unit[90]{s} overlaps can be observed where low quality (144p) is replaced by higher quality levels (240p, 360p and 480p).}
-\label{fig:request_schedule}%
-\end{figure}
