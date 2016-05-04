@@ -3,9 +3,13 @@
 
 \subsection{Data Sets}
 
-In total, there are four data sets used in this evaluation as listed in the following table. The three data-sets starting from the second are calculated based on the first (experimental) data set.
-
-\begin{tabular}{|c|c|c|}
+In total, there are four data sets used in this evaluation as listed in Table \ref{tab:datasets}. The three data-sets starting from the second are calculated based on the first (experimental) data set.
+\begin{table}
+\caption{Overview of the data sets used in this work.}
+\label{tab:datasets}
+\centering
+\begin{tabular}{|p{2cm}|p{2.3cm}|p{3.2cm}|}
+%\begin{tabular}{|c|c|c|}
 \hline 
 Data Set & Identifier & Description \\ 
 \hline 
@@ -18,7 +22,7 @@ Optimization with stallings & opt (prebuffering) & The MILP solition with stalli
 Opimtization with stalling & opt (instant play) & The MILP solution without stalling times. \\ 
 \hline 
 \end{tabular} 
-
+\end{table}
 %Two of those are data sets from \cite{sieber16sacrificing}. The other two were created by implementing above optimization problem in the Gurobi Optimizer
 
 First, we have the initial observations which shall serve as the \textit{baseline} in the following analysis. These measurements were originally recorded in \cite{sieber16sacrificing} where the measurement methodology and measurement set-up is described in great detail: $35$ videos $\times 27$ bandwidth values $\times 15$ replications. Four quality level representations were observed: $144p, 240p, 360p, 480p$. In the following, we refer to these video quality levels as $0,1,2,3$. Please notice that stalling events did occur in $56\%$ of these runs.
