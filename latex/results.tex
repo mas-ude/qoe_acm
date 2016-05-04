@@ -6,7 +6,7 @@
 
 In this section, we present our results on how much YouTube's current adaptation algorithm could be improved. As key metrics, we analyze the average quality, the frequency of stalling events, the frequency of quality switches and the initial delay of the video playback. As a first step, we discuss how the video quality and stalling events are related to each other in the experimental data set.
 
-\subsection{Correlation Between Quality and Stalling}
+\subsection{Relationshop Between Quality and Stalling}
 
 \begin{figure}[t]
 \centering
@@ -36,11 +36,12 @@ Next, we discuss the potential gain in average quality as estimated by the heuri
 \begin{figure}[t]
 \centering
 \includegraphics[width=\columnwidth]{figs/qualitygain_py}%
-\caption{Distribution of the mean video quality in the measurement runs and highest achievable mean video quality according to the optimization problem from Section \ref{optadapt} and the heuristic from \cite{sieber16sacrificing}.}
+%\caption{Distribution of the mean video quality in the measurement runs and highest achievable mean video quality according to the optimization problem from Section \ref{optadapt} and the heuristic from \cite{sieber16sacrificing}.}
+\caption{Distribution of the difference between the observed mean video quality and the  optimally achievable mean video quality  according to the optimization problem from Section \ref{optadapt} and the heuristic from \cite{sieber16sacrificing}.}
 \label{fig:opt}%
 \end{figure}
 
-Figure \ref{fig:opt} displays the distribution of the difference between the observed mean video quality and the optimal optimally achievable mean video quality. We observe that about $30$ percent of runs are already at maximum quality and can therefore not be improved. The data set \textit{opt (prebuffering)} leads to the highest mean quality. However, the results for the three data sets are very close to each other, e.g. the median of all three data sets is within $0.15$ of a quality of each other.
+Figure \ref{fig:opt} displays the distribution of the difference between the observed mean video quality and the optimally achievable mean video quality. We observe that about $30$ percent of runs are already at maximum quality and can therefore not be improved. The data set \textit{opt (prebuffering)} leads to the highest mean quality. However, the results for the three data sets are very close to each other, e.g. the median of all three data sets is within $0.15$ of a quality of each other.
 %In $56$ percent of the baseline runs stalling events did occur.
 
 If we take Figure \ref{fig:initial_delay} into consideration, it becomes clear that this minor difference in quality comes at a price: \textit{opt (instant play)} demonstrates that it would have been possible to avoid stalling and a high initial delay in $93$ percent of cases while increasing the quality in $30$ percent of cases. While \textit{opt (prebuffering)} shows that the mean quality could have been increased by adding an initial delay, the improvement is not particularly high. Lastly, while the heuristic leads to a worse result than \textit{opt (prebuffering)}, it has the advantage of being a less complex problem. This might outweigh the slightly better performance for practical purposes.

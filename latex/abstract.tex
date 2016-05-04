@@ -3,15 +3,17 @@
 
 \begin{abstract}
 \label{sec:abstract}
-YouTube, as one of the major HTTP Adaptive Streaming (HAS) based services, accounts for a large fraction of today's Internet traffic.
+YouTube, as one of the major HTTP Adaptive Streaming video services, accounts for a large fraction of today's Internet traffic.
 Therefor it is important to understand how efficiently YouTube uses the available network resources.
-In particular it was observed that the YouTube player replaces previously buffered segments with higher quality segments. This is good for the user as it increases the average quality level. 
-However, the lower quality level segments are discarded and their traffic was redundant and therefor wasted.
+Previous work observed that the YouTube player replaces previously buffered segments with higher quality segments. This is good for the user as it increases the average quality level. 
+However, the lower quality level segments are discarded and their traffic is redundant and therefor wasted.
 In this paper, we use two independent approaches to evaluate the efficiency of YouTube's quality adaptation algorithm.
 The first approach performs regression based on previously collected video views from a large experimental data set.
-In the second approach we formulate the problem as a MILP and calculate the optimal adaptation considering the same bandwidth parameters and cumulative stalling times as the experimental data set.
-The results show that the simplistic regression approach gives and accurate estimation of the optimal adaptation.
-Furthermore, the optimization shows that even when completely avoiding stalling, the quality level can be improved compared to the actual average quality level observed in the experimental data set.
-This paper provides an outlook on the potential that is left for improving YouTube's adaptation mechanism that is essential to managing the Quality of Experience of this important streaming service.
+In the second approach we formulate a mixed integer linear program and calculate the optimal video quality adaptation. % considering the same bandwidth parameters and cumulative stalling times as the experimental data set.
+The results show that the simplistic regression approach gives an accurate estimation of the optimal adaptation.
+Furthermore, the optimization shows that the Quality of Experience (QoE)
+% even when completely avoiding stalling, the quality level 
+can be significantly improved compared to the actual average quality level observed in the real-world experiments, demanding for better video quality adaptation mechanisms by YouTube. 
+%An outlook is provided on the potential that is left for improving YouTube's adaptation mechanism that is essential to managing the Quality of Experience of this important streaming service.
 \end{abstract}
 

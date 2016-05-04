@@ -8,19 +8,19 @@ In total, there are four data sets used in this evaluation as listed in Table \r
 \caption{Overview of the data sets used in this work.}
 \label{tab:datasets}
 \centering
-\begin{tabular}{|p{2cm}|p{2.3cm}|p{3.2cm}|}
+\begin{tabular}{p{2cm}p{2.3cm}p{3.2cm}}
 %\begin{tabular}{|c|c|c|}
-\hline 
+\toprule
 Data Set & Identifier & Description \\ 
-\hline 
-Measurements from \cite{sieber16sacrificing} & measurement & The experimental data set recorded in a testbed \\ 
-\hline 
+\midrule 
+Measurements from \cite{sieber16sacrificing} & measurement & The experimental data set recorded in a testbed. \\ 
+\addlinespace
 Heuristic estimation & heuristic & The heuristic estimation which gives us the possible gain without redundant traffic. \\ 
-\hline 
+\addlinespace
 Optimization with stallings & opt (prebuffering) & The MILP solition with stalling times. \\ 
-\hline 
+\addlinespace
 Opimtization with stalling & opt (instant play) & The MILP solution without stalling times. \\ 
-\hline 
+\bottomrule
 \end{tabular} 
 \end{table}
 %Two of those are data sets from \cite{sieber16sacrificing}. The other two were created by implementing above optimization problem in the Gurobi Optimizer
