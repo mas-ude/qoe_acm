@@ -4,14 +4,14 @@
 \section{Results}
 \label{sec:results}
 
-In this section, we present our results on how much YouTube's current adaptation algorithm could be improved. As key metrics, we analyze the average quality, the frequency of stalling events, the frequency of quality switches and the initial delay of the video playback. As a first step, we discuss how the video quality and stalling events are related to each other in our measurement.
+In this section, we present our results on how much YouTube's current adaptation algorithm could be improved. As key metrics, we analyze the average quality, the frequency of stalling events, the frequency of quality switches and the initial delay of the video playback. As a first step, we discuss how the video quality and stalling events are related to each other in the experimental data set.
 
 \subsection{Correlation Between Quality and Stalling}
 
 \begin{figure}[t]
 \centering
 \includegraphics[width=\columnwidth]{figs/33qualityvstalling}%
-\caption{Average playback quality versus stalling events}
+\caption{Average playback quality compared to stalling events per minute as observed in the experimental data set. Average playback quality is clustered using k-means with 40 bins. On average, every 0.6 minutes a stalling event can be observed. Average playback quality and stalling events are highly correlated and show osculating behavior.}
 \label{fig:qualityvsstalling}%
 \end{figure}
 
@@ -26,10 +26,12 @@ The oscillating behavior is consistent with observations made in \cite{sieber16s
 The studies show that the performance of YouTube's adaptation algorithm depends on the ratio between video bit-rate and available bandwidth.
 For certain ratios, the algorithm is able to efficiently use the available bandwidth, i.e. there is only a low amount of redundant traffic and buffering.
 Other ratios exhibit a high amount of redundant traffic and buffering ratio.
-%There exists a fixed ratio of about three times the bit-rate compared to the network throughput (i.e. not application level throughput), where the time on that quality level is maximized, but also the quality switching and buffering ratio is increased.
 In total, the pearson correlation shows a high correlation ($-0.774$) between average quality level and buffering events.
+To summarize, in the experimental data, YouTube's adaptation exhibits $0.4$ to $1$ to stalling events per minute.
 
 \subsection{Optimal Adaptation}
+
+Next, we discuss the potential gain in average quality as estimated by the heuristic and the two optimization problem formulations. 
 
 \begin{figure}[t]
 \centering
