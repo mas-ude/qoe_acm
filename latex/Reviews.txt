@@ -1,0 +1,78 @@
+Strengths
+
+This paper investigates how the youtube adaptation schemes can be optimized to avoid the downloading of redundant video data. By performing a regression on previously collected traces, the possible gain is identified. An MILP is formulated to select the best quality for each segment subject to the available network conditions. The authors use a dataset of over 10000 video views of about 30 different videos. The authors also show that on average there is a stalling event every 1 or 2 min, showing the importance of stalling avoidance techniques for streaming applications. Interesting result is that the buffering events exhibit a oscillating behavior, i.e. for certain ratios the algorithm is more efficiently than for other ratios of video rate vs available bandwidth.
+
+The paper is easy to read and its topics are very relevant to the workshop. Its outcomes are clearly stated and raise interesting questions. The fact that the underlying dataset will be made available publicly is a good reason for publishing the paper, as it may inspire other studies.
+
+The motivation and objectives of the research are clearly stated. The problem addressed is important given the popularity of YouTube and the impact of video consumption on network resources. As discussed by the authors, current redundancy can be instead used for improving the quality of experience, or avoided for reducing BW consumption. The level of evaluation is adequate for a workshop paper, making interesting observations, and the dataset used has been made available on git.
+
+The paper proposes a novel approach to quantifying the optimal use of available bandwidth for HTTP Adaptive Streaming as used by e.g. Youtube. It is focusing not so much on perceived quality, but on the bandwidth utilisation under the constraint of a given quality "pattern" (caused by a given request schedule).
+
+
+Weaknesses & Detailed comments
+
+- The authors assume that the future network bandwidth can be predicted, meaning that the proposed approaches only have limited practical applications. They show that there is room for improvement based on offline optimizations using traces, but no online solution that is viable in a real network scenario is presented. I would like to see some kind of adaptation heuristic that can be applied in a network scenario.
+- The MILP uses the available bandwidth as a constraint. However, since TCP is adaptive, requesting a segment at a certain time does not guarantee to actually achieve this throughput. The proposed model does not take this variability into account. How would this affect the optimality?
+
+- abstract (2 times): Therefor -> Therefore
+- I: were played in testbed -> in a testbed
+- III: computational expensive -> computationally expensive
+- IV.A: with about 0.5 switches per minute -> 0.5 stallings?
+- V: the first methods -> method
+- V: in average -> on average
+
+Content:
+- "In HAS, the video content is split, (...), and each chunk is encoded"
+- that is not the case. Videos are encoded as whole files (per representation) first, then segmented into smaller chunks. Otherwise, the guarantee of bitrate constraints (e.g. average bitrate) would be impossible, and the encoder might output chunks of significantly varying quality. See: https://developer.apple.com/library/ios/documentation/NetworkingInternet/Conceptual/StreamingMediaGuide/UsingHTTPLiveStreaming/UsingHTTPLiveStreaming.html and https://github.com/slederer/DASHEncoder etc.
+- How can the "jump at 20 MB" be explained?
+- Although in the context it is quite clear what is meant, I would refer to "Amazon Instant Video", not "Prime", with "Prime" being a complete package of other services that Amazon offers.
+- The author definition of "average quality" in IV-A should be moved to section III-A, because there "average quality" is mentioned as well but not understandable without the explanation.
+- How realistic is it to "move" all the stalling to the initial loading? Why could the stalling events not be kept "naturally" as a byproduct of the optimization? Also, it should clearly be mentioned that having long initial loading is not a realistic choice for VoD providers, as this would significantly increase user abandonment.
+Presentation:
+- The paper does not use the proper template! Please re-format it using the template offered on the website.
+- Instead of "the axis to the left/right", please refer to x and y axes.
+- I would prefer the user not being "he", but "he/her" or "they".
+- There are some spelling and grammar errors:
+- "therefor", "mayor"
+- "i.e. the video resolution" should be "e.g."
+- "was assume" -> "was assumed"
+- Capitalization in the references section is wrong, e.g. "Youtube", "dash", etc.
+- The lines/points in Figure 2 can hardly be distinguished on a greyscale printout.
+- Table 1, last line should read "optimization without stalling" in the first cell, and the second to last cell should read "stalling" instead of "stallings"
+- Footnote 1 is shown on the wrong page
+
+I could not identify major shortcomings in this paper. Some minor issues should be addressed. For example, the authors could elaborate on how the proposed heuristic could be used in practice with respect to the network information required for decision-making, e.g. BW availability. Also, some clarifications are needed and some expression / grammatical issues should be fixed (please see next section for more details).
+
+As mentioned in the previous section, you should explain any practicality issues that would arise in acquiring information about the network conditions. For example, in Section V you make the assumption that "future network BW can be predicted". How realistic is this assumption? Is there some previous work that can support this requirement?
+Some statements require further clarification:
+- Section I, par. 2: "congested links in after-work hours" -> network congestion can occur at any time, but most likely during office hours.
+- Section I, par. 3: "In previous work" -> please cite this work here.
+- Section III.C, par. 4: "As a new contribution" -> how about the heuristic approach, is it not a new contribution?
+Please refer to x- and y-axis throughout the paper, as opposed to axis to the right and the left.
+The text requires proofreading to fix some grammatical/expression issues that sometimes spoil the text. Representative examples are given below:
+- Abstract: "Therefor" -> "Therefore"
+- Section I, par. 2: "in after-work hours" -> "during after-work hours"
+- Section I, par. 3: "to the account" -> "at the expense"
+- Section I, par. 3: "segments are lost" -> "discarded" is a more appropriate work to use
+- Section I, par. 4: "Therefor" -> "Therefore"
+- Section II, par. 1: "when optimization" -> "when optimizing"
+- Section III, par. 1: "computational expensive" -> "computationally expensive"
+- Section III.C, par. 2: "in great detail" -> "in more detail"
+- Section III.C, par. 2: "Please notice" -> "Please note"
+- Section III.C, par. 3: "was assume" -> "was assumed"
+- Section III.C, par. 5: "mayor difference" -> "major difference"
+- Section V, par. 3: "In average" -> "On average"
+- Section V, par. 3: "in a higher quality" -> "at a higher quality"
+
+The technical description of parameters derived and used is not very clear.
+
+It is not very clear what Figs. 4-6 actually show. What is P(x<X)? This crucial measure should be explained better (in text, not just in the caption of Fig. 4).
+Furthermore, how can the "Potential gain in quality" be the independent variable as shown in Fig. 4? This needs more explnation as well. Some editorial comments:
+- approximately 60 s where available in more than one quality -> were
+- Nam at al. conduct a large -> et al.
+- the observed bandwidth and cumulative stallings times -> stalling times, also next sentence
+- Notice that it was assume that the same -> assumed
+- delay to the the replaying process -> delete "the"
+- exhibits 0.4 to 1 to stalling events -> delete second to
+- While the number of switches is not of -> Whereas the...
+- but in the same time decreases the -> at the same time
