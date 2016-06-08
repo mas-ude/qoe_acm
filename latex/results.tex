@@ -19,7 +19,7 @@ Figure \ref{fig:qualityvsstalling} illustrates the relationship between the aver
 For the average quality level, $0$ is defined as $100\%$ of the segments are shown to the user in $144p$. Quality $3$ is defined as $100\%$ of the segments are shown to the user in $480p$.
 The average quality levels are clustered using k-means ($40$ bins) and the error bars indicate the \unit[95]{\%} confidence interval of each cluster.
 Two observations can be made from the figure. 
-First, the lowest average quality level is $0.3$ with about $0.5$ switches per minute.
+First, the lowest average quality level is $0.3$ with about $0.5$ quality switches per minute.
 From this it follows that the player risks one stalling per two minutes in order to avoid showing only the lowest quality level in low bandwidth scenarios.
 Second, the buffering events exhibit an oscillating behavior.
 The oscillating behavior is consistent with observations made in \cite{sieber16sacrificing, casas2012youtube}.
@@ -27,7 +27,7 @@ The studies show that the performance of YouTube's adaptation algorithm depends 
 For certain ratios, the algorithm is able to efficiently use the available bandwidth, i.e. there is only a low amount of redundant traffic and buffering.
 Other ratios exhibit a high amount of redundant traffic and buffering ratio.
 In total, the pearson correlation shows a high correlation ($-0.774$) between average quality level and buffering events.
-To summarize, in the experimental data, YouTube's adaptation exhibits $0.4$ to $1$ to stalling events per minute.
+To summarize, in the experimental data, YouTube's adaptation exhibits $0.4$ to $1$ stalling events per minute.
 
 \subsection{Optimal Adaptation}
 
@@ -60,5 +60,5 @@ If we take Figure \ref{fig:initial_delay} into consideration, it becomes clear t
 \label{fig:switches}%
 \end{figure}
 
-Finally, Figure \ref{fig:switches} shows the number of quality switches per minute. Here, both data sets that were created with the optimization approach lead to very similar results, which is why we only present the results for \textit{opt (instant play)}. While the number of switches is not of significant importance to the QoE in video streaming according to \cite{seufert2015survey}, continuous video quality switches lead to a low QoE \cite{liu2013user}. The heuristic approach and the optimization both lead to less than $2$ switches per minute in more than $80$ percent of cases which are acceptable values. However, the two-step approach for the optimization leads to some very high switching frequencies that might be problematic. This is because the two-step approach puts very high value on the optimization of the quality level and very little emphasis on the number of switches. Luckily, this problem can easily be averted by using a slightly different approach: In \cite{liotou2016enriching}, a method is proposed that combines both steps into one, allowing the number of switches to be emphasized higher at a negligibly low cost of quality.
+Finally, Figure \ref{fig:switches} shows the number of quality switches per minute. Here, both data sets that were created with the optimization approach lead to very similar results, which is why we only present the results for \textit{opt (instant play)}. Whereas the number of switches is not of significant importance to the QoE in video streaming according to \cite{seufert2015survey}, continuous video quality switches lead to a low QoE \cite{liu2013user}. The heuristic approach and the optimization both lead to less than $2$ switches per minute in more than $80$ percent of cases which are acceptable values. However, the two-step approach for the optimization leads to some very high switching frequencies that might be problematic. This is because the two-step approach puts very high value on the optimization of the quality level and very little emphasis on the number of switches. Luckily, this problem can easily be averted by using a slightly different approach: In \cite{liotou2016enriching}, a method is proposed that combines both steps into one, allowing the number of switches to be emphasized higher at a negligibly low cost of quality.
 
