@@ -19,7 +19,7 @@ It is well known that stalling events and the video encoding bit-rate, i.e. the 
 Therefore, it is important for the service provider to develop a sophisticated adaptation logic which can prevent stalling events even when faced with bottle-necked or unstable Internet connections, such as cellular access or congested links during after-work hours.
 
 In this paper we take a closer look at the behavior of the adaptation logic of YouTube.
-In previous work we showed that YouTube's adaptation logic focuses strictly on the user, at the expense of network efficiency.
+In previous work \cite{sieber16sacrificing} we showed that YouTube's adaptation logic focuses strictly on the user, at the expense of network efficiency.
 In particular, we observed that the YouTube player sometimes discards its currently buffered content to re-download it in a higher quality level.
 In this way, the player can increase the average quality level shown to the user.
 However, the overall efficiency decreases as the previously downloaded segments are discarded.
@@ -32,8 +32,8 @@ However, the overall efficiency decreases as the previously downloaded segments 
 \end{figure}
 
 Figure \ref{fig:request_schedule} shows a request schedule for one of the experiment runs.
-The axis to the right shows the request video interval in playback time, e.g. the first $\SI{16}{\second}$ of the video.
-The axis to the left shows the time of request based on the experiment time, with $0$ being the time the first HTTP GET request was sent to the server.
+The x-axis shows the request video interval in playback time, e.g. the first $\SI{16}{\second}$ of the video.
+The y-axis shows the time of request based on the experiment time, with $0$ being the time the first HTTP GET request was sent to the server.
 At first, the player requests one minute of the lowest quality level.
 Then, ${20}$ seconds into the experiment, the player revises its previously made decision, discards two of the low quality segments (i.e. $\SI{30}{\second}$ of playback time) and starts to download a higher quality level instead.
 The shaded areas in the figure illustrate where lower quality segments were discarded.
@@ -45,7 +45,7 @@ The evaluation in this work is based on an experimental data set with over $10.0
 The videos were played in a testbed where the connection was throttled to $\{0.4, 0.5, \dots \SI{3.0}{Mbps}\}$.
 A proxy was used to decrypt the HTTPS connection.
 The dataset and testbed is described in detail in \cite{sieber16sacrificing,sieber15costaggressive} and the experimental dataset is freely available online at \cite{traces}. 
-Over 70 QoE-relevant metrics like average quality level, cumulative stalling times and number of quality switches were collected.
+Over 70 QoE-relevant metrics such as average quality level, cumulative stalling times and number of quality switches were collected.
 
 Our main contribution lies in analyzing how much the used adaptation algorithm can be optimized. Even if we completely avoid stalling events, a higher mean video quality is achievable in most cases. Further, it is possible to reduce the number of resolution switches and start the video after a shorter initial delay.
 
